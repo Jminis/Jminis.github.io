@@ -1,8 +1,6 @@
----
 layout: default
 title: Navigation Structure
 nav_order: 5
----
 
 # Navigation Structure
 
@@ -51,29 +49,6 @@ The parameter values can be numbers (integers, floats) and/or strings. When you 
 By default, all Capital letters come before all lowercase letters; you can add `nav_sort: case_insensitive` in the configuration file to ignore the case. Enclosing strings in quotation marks is optional.
 
 > _Note for users of previous versions:_ `nav_sort: case_insensitive` previously affected the ordering of numerical `nav_order` parameters: e.g., `10` came before `2`. Also, all pages with explicit `nav_order` parameters previously came before all pages with default parameters. Both were potentially confusing, and they have now been eliminated.
-
----
-
-## Excluding pages
-
-For specific pages that you do not wish to include in the main navigation, e.g. a 404 page or a landing page, use the `nav_exclude: true` parameter in the YAML front matter for that page.
-
-#### Example
-
-{: .no_toc }
-
-```yaml
----
-layout: default
-title: 404
-nav_exclude: true
----
-
-```
-
-The `nav_exclude` parameter does not affect the [auto-generating list of child pages](#auto-generating-table-of-contents), which you can use to access pages excluded from the main navigation.
-
-Pages with no `title` are automatically excluded from the navigation.
 
 ---
 
@@ -127,28 +102,6 @@ has_children: true
 ```
 
 Here we're setting up the UI Components landing page that is available at `/docs/ui-components`, which has children and is ordered second in the main nav.
-
-### Child pages
-
-{: .text-gamma }
-
-On child pages, simply set the `parent:` YAML front matter to whatever the parent's page title is and set a nav order (this number is now scoped within the section).
-
-#### Example
-
-{: .no_toc }
-
-```yaml
----
-layout: default
-title: Buttons
-parent: UI Components
-nav_order: 2
----
-
-```
-
-The Buttons page appears as a child of UI Components and appears second in the UI Components section.
 
 ### Auto-generating Table of Contents
 
@@ -218,23 +171,6 @@ This would create the following navigation structure:
 |   |-- ..
 |
 +-- ..
-```
-
----
-
-## Auxiliary Links
-
-To add auxiliary links to your site (in the upper right on all pages), add it to the `aux_links` [configuration option]({{ site.baseurl }}{% link docs/configuration.md %}#aux-links) in your site's `_config.yml` file.
-
-#### Example
-
-{: .no_toc }
-
-```yaml
-# Aux links for the upper right navigation
-aux_links:
-  "Just the Docs on GitHub":
-    - "//github.com/just-the-docs/just-the-docs"
 ```
 
 ---
