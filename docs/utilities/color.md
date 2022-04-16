@@ -48,7 +48,7 @@ All the colors used in Just the Docs have been systematized into a series of var
 ## Blues
 
 | Color value    | Font color utility   | Background color utility |
-|:---------------|:---------------------|:-------------------------|
+|:---------------|:---------------------|:-------------------------|	
 | <span class="d-inline-block p-2 mr-1 v-align-middle bg-blue-000"></span> `blue-000` | `.text-blue-000` | `.bg-blue-000` |
 | <span class="d-inline-block p-2 mr-1 v-align-middle bg-blue-100"></span> `blue-100` | `.text-blue-100` | `.bg-blue-100` |
 | <span class="d-inline-block p-2 mr-1 v-align-middle bg-blue-200"></span> `blue-200` | `.text-blue-200` | `.bg-blue-200` |
