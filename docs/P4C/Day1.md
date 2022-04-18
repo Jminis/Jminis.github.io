@@ -27,7 +27,8 @@ HTML: HyperText Markup Language
 웹을 만들어달라는 의미의 언어로 컴퓨터와 사람간의 소통이 가능하도록 만든 약속의 집합체이다.  
 그리고 이를 읽어주는 것이 웹 브라우저로 Chrome과 같은 프로그램이 이에 해당한다.  
 "팀버너스리" 라는 인물에 의해 만들어졌으며 현재 우리가 사용하고 있는 HTML은  
-GML -> SGML -> SGMLguid 를 거쳐 현재의 HTML이 탄생하게 되었다.
+GML -> SGML -> SGMLguid 를 거쳐 현재의 HTML이 탄생하게 되었다.  
+점점 더 Semantic해지기 위해 발전해나가고 있으며 최근 표준은 HTML5 이다.
 
 <br>
 
@@ -92,25 +93,25 @@ GML -> SGML -> SGMLguid 를 거쳐 현재의 HTML이 탄생하게 되었다.
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>이것은 탭의 제목</title>
-    <meta charset="utf-8">
-  </head>
+    <head>
+    	<title>이것은 탭의 제목</title>
+	    <meta charset="utf-8">
+	</head>
   
-  <body>
-    <h1><a href="index.html">나는 큰 제목이다</a></h1>
-    <ol>
-      <li><a href="1.html">기술소개</a></li>
-      <li><a href="2.html">기본문법</a></li>
-      <li><a href="3.html">하이퍼텍스트와 속성</a></li>
-      <li><a href="4.html">리스트와 태그의 중첩</a></li>
-    </ol>
+	<body>
+		<h1><a href="index.html">나는 큰 제목이다</a></h1>
+		<ol>
+			<li><a href="1.html">기술소개</a></li>
+			<li><a href="2.html">기본문법</a></li>
+			<li><a href="3.html">하이퍼텍스트와 속성</a></li>
+			<li><a href="4.html">리스트와 태그의 중첩</a></li>
+		</ol>
     
-    <h1>나는 작은 제목이다</h1>
-    대충 내용이라는 내용
+		<h1>나는 작은 제목이다</h1>
+		대충 내용이라는 내용
     
-    <h1>나는 작은 제목이다2</h1>
-  </body>
+		<h1>나는 작은 제목이다2</h1>
+	</body>
 </html>
 ```
 
@@ -123,6 +124,37 @@ HTML에 존재하는 태그 기능들이 추가되거나 수정되어지고 있�
 
 `meta`에 `utf-8` 값을 지정해두면 한글이 안깨진다.
 
+<br><br>
+
+## 의미론적인 HTML
+
+글에 요점이 존재하듯 코드에도 요점이 존재해야 한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta charset="utf-8">
+</head>
+<body>
+	<header>
+		<h1><a href="http://localhost/">메인 컨텐츠</a></h1>
+	</header>
+	<nav>
+		<ol>
+			<li><a href="http://localhost/a.html">첫번째</a></li>
+			<li><a href="http://localhost/b.html">두번째</a></li>
+			<li><a href="http://localhost/c.html">세번째</a></li>              
+		</ol>
+	</nav>
+</body>
+</html>
+```
+
+앞서 배운 태그 이외에 `header`와 `nav` 라는 태그가 사용되었는데 해당 태그를 제외하고 작성을 하여도 결과물은 똑같다. 그럼에도 해당 태그를 사용하는 것이 바람직한 이유는 코드를 보았을 때 해당 페이지의 코드가 전달하려는 정보 의도를 전달할 수 있기 때문이다. HTML의 표준은 날이 갈수록 의미를 더 잘 전달할 수 있는 방향으로 나아가고 있기에 사용자들도 이에 익숙해져야겠다.
+
+
+
 <br><br><br>
 
 -----
@@ -132,9 +164,20 @@ HTML에 존재하는 태그 기능들이 추가되거나 수정되어지고 있�
 # > 리눅스에 웹서버 구축하기
 
 예제를 통해 학습을 하다보니 실제 내 서버에서 구동되는 모습이 보고 싶어졌다.  
-그래서 시스템 해킹용으로 미리 만들어두었던 아마존 웹서버를 이용해 만들어보고자 한다.  
+그리하여 약간 순서를 바꾸어 VM Ware에 구축된 Ubuntu 20.04 환경에 구축할 예정이다.
+
+## Bitnami: LAMP  
+
+웹 구축에 필요한 `Apache`, `Mysql`, `Php`가 한번에 설치되는 Bitnami를 이용했다.  
+`Apache`는 웹 서버요청 처리를 담당하여 html의 위치와 같은 정보를 로드할 수 있도록 돕는다.   
+`MySQL`은 관계형 데이터베이스 관리 시스템으로 관계지향적이며,   
+SQL언어를 이용하여 데이터를 관리할 수 있다.  
+`PHP`는 페이지의 동적인 기능을 수행할 수 있도록 지원하는 오픈 소스 스크립트 언어이다.  
+
+<br>
 
 
+![image-20220418214853496](../img/image-20220418214853496.png)
 
 
 
