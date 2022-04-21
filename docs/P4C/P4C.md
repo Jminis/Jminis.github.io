@@ -37,9 +37,14 @@ permalink: /docs/P4C
 
 ## Day 3
 
+HTML의 첫걸음을 떼기 시작했다.  
+다음은 php이다.
+
 <br><br>
 
 ## Day 4
+
+php...php...php...?
 
 <br><br>
 
