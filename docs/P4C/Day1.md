@@ -11,7 +11,7 @@ grand_parent: P4C
 
 -----
 
-# > 생활코딩과 공부하기
+# > 생활 코딩과 공부하기
 
 - [https://opentutorials.org/course/2039](https://opentutorials.org/course/2039) (HTML)
 
