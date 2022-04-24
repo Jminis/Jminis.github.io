@@ -10,12 +10,14 @@ permalink: /docs/P4C
 ##### 해당 게시글은 빡공팟 4기(with TeamH4C)와 관련되어 있습니다
 
 # P4C(빡공팟) 4기 과제 모음입니다
+<br>
 
-기회를 준 "TeamH4C", 정말 감사드리고 열심히 하겠습니다
+**기회를 준 "TeamH4C", 정말 감사드리고 열심히 하겠습니다**
+{: .text-center}
 
 {: .toc}
 
-<br><br><br>
+<br><br>
 
 -----
 
