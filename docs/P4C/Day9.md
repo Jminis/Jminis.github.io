@@ -147,7 +147,7 @@ Cascading Style Sheet에서 Cascading은 "폭포", 즉 아래로 흐르는 규�
     <ul>
       <li>html</li>
       <li id="idsel" class="classsel">css</li>
-      <lit>javascript</li>
+      <li>javascript</li>
     </ul>
 </body>
 ```
@@ -312,4 +312,4 @@ flex-shrink: 0;
 이론만 듣다 보니 많이 지루했기에 직접 만들어보며 모르는 것들을 찾기로 했다.  
 이제는 다른 css 코드를 보더라도 어떤 의미인지 감이 오기에 내 것으로 만들기로 했다.
 
-...를 하려했는데 생각보다 만드는게 어렵다. 내일 꼭 만들어야 겠다.
+...를 하려했는데 생각보다 만드는게 어렵다. 내일 꼭 만들어야겠다.
