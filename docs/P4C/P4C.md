@@ -23,6 +23,9 @@ permalink: /docs/P4C
 
 # > Daily LOG
 
+<details>
+<summary>1주차</summary>
+<div markdown="1">
 ## Day 1. 시작
 
 첫 과제이고 이제 시작이라 의욕이 넘친다.  
@@ -70,7 +73,49 @@ php...php...php...?
 
 <br><br>
 
+## Day  7
 
+진행해야할 전체적인 틀이 보인다.  
+도착해야할 섬의 윤곽이 보이기 시작한 느낌이다.
 
+<br><br>
+</div>
+</details>
 
+## Day 8
+
+개발이라는 것을 시작해보니 알겠다.  
+나는 재능이 없다 ㅋㅋ..
+
+<br><br>
+
+## Day 9
+
+못해서 재밌는 건지 이게 재밌는 건지  
+뭔가 만들어지는게 재밌긴 하다.
+
+<br><br>
+
+## Day 10
+
+만들면 만들수록 오기가 생긴다.  
+만들 수 있겠지..?ㅋㅋ
+
+<br><br>
+
+## Day 11
+
+<br><br>
+
+## Day 12
+
+<br><br>
+
+## Day 13
+
+<br><br>
+
+## Day 14
+
+<br><br>
 
