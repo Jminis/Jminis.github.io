@@ -3,6 +3,7 @@ layout: default
 title: Hacking Project - W4
 nav_order: 3
 
+has_children: true
 parent: P4C
 ---
 
@@ -10,6 +11,8 @@ parent: P4C
 -----
 
 # W4: 파이썬 학습 및 Suninatas 웹해킹 문제 풀이
+
+<br>
 
 - https://wikidocs.net/book/1 (클래스 제외 5장 까지)
 
