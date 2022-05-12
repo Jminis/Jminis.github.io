@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Day17
+title: Day24
 nav_order: 3
 
-parent: Develop Project - W3
+parent: Hacking Project - W4
 grand_parent: P4C
 ---
 
