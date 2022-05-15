@@ -23,3 +23,12 @@ parent: P4C
 - 이후 과제에서 요구되는 수준의 파이썬은 스스로 독학
 
 - http://suninatas.com/challenges/web
+
+
+
+2022-05-15 WEB 파트 완료
+
+(https://jminis.github.io/docs/P4C/Day26/#정리)[https://jminis.github.io/docs/P4C/Day26/#정리]
+
+
+

@@ -78,6 +78,8 @@ php...php...php...?
 <summary>2주차</summary>
 <div markdown="1">
 
+
+
 ## Day 8
 
 개발이라는 것을 시작해보니 알겠다.  
@@ -126,6 +128,10 @@ php...php...php...?
 </div>
 </details>
 
+<details>
+<summary>3주차</summary>
+<div markdown="1">
+
 ## Day 15
 
 뇌절 1일차: 얘는 되는데 난 왜 안돼
@@ -152,14 +158,16 @@ php...php...php...?
 
 ## Day 19
 
-<br><br>
-
-## Day 20
+서울 집값이 너무 비싸..
 
 <br><br>
 
-## Day 21
+</div>
+</details>
 
+<details>
+<summary>4주차</summary>
+<div markdown="1">
 
+어느새 이걸 쓰고 있었던 걸 까먹어버렸당
 
-<br><br>
