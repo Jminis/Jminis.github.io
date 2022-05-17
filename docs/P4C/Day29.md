@@ -85,6 +85,6 @@ sudo chmod 777 /opt/lampstack-8.1.4-0/apache2/htdocs/config
 
 <br>
 
-recaptcah를 제외하고 모두 Yes로 바뀐 것을 확인하고 Setup하니 완성되었다. 이후에 row 레벨을 풀어야하기에 아래와 같이 row레벨로 설정하였고 내일부터 제대로 풀 예정이다. bob 자소서도 써야하니 시간 안배를 잘해야겠다.
+recaptcah를 제외하고 모두 Yes로 바뀐 것을 확인하고 Setup하니 완성되었다. 이후에 low 레벨을 풀어야하기에 아래와 같이 low레벨로 설정하였고 내일부터 제대로 풀 예정이다. bob 자소서도 써야하니 시간 안배를 잘해야겠다.
 
 ![image-20220516145246427](../img/image-20220516145246427.png)
