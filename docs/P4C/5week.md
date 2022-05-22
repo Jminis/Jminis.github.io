@@ -34,7 +34,7 @@ parent: P4C
 
 <br>
 
-## > 문제별 라업
+## > Low 문제별 라업
 
 1. [Brute Force](https://jminis.github.io/docs/P4C/Day29/#-dvwa-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0)
 2. [Command Injection](https://jminis.github.io/docs/P4C/Day32/#-dvwa-command-injection)
@@ -47,9 +47,9 @@ parent: P4C
 9. [Weak Session IDs](https://jminis.github.io/docs/P4C/Day34/#-dvwa-weak-session-ids)
 10. [XSS (DOM)](https://jminis.github.io/docs/P4C/Day34/#-dvwa-dom-based-xss)
 11. [XSS (Reflected)](https://jminis.github.io/docs/P4C/Day34/#-dvwa-reflected-xss)
-12. [XSS (Stored)]()
-13. [CSP Bypass]()
-14. [JavaScript]()
+12. [XSS (Stored)](https://jminis.github.io/docs/P4C/Day35/#-dvwa-xss-stored)
+13. [CSP Bypass](https://jminis.github.io/docs/P4C/Day35/#-dvwa-csp-bypass)
+14. [JavaScript](https://jminis.github.io/docs/P4C/Day35/#-dvwa-javascript-attacks)
 
 <br>
 
