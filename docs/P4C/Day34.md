@@ -68,7 +68,9 @@ if( isset( $_POST[ 'Upload' ] ) ) {
 
 <br><br>
 
-이 문제를 해결하고 나니 코드 부분이 이해가 가지 않았다. 인터넷을 찾아보니 `move_uploaded_file`은 성공할 경우 true를 반환하는 것으로 나와있다. 그러나 위 코드에서 반환이 false일 경우에 업로드 문구가 뜨도록 되어있는데... 뭘까...
+~~이 문제를 해결하고 나니 코드 부분이 이해가 가지 않았다. 인터넷을 찾아보니 `move_uploaded_file`은 성공할 경우 true를 반환하는 것으로 나와있다. 그러나 위 코드에서 반환이 false일 경우에 업로드 문구가 뜨도록 되어있는데... 뭘까...~~
+
+사람이 피곤하면 헛소리를 하는 듯하다. 실패하면 false 거기에 `!` 되면 true 그래서 No.
 
 <br><br>
 
@@ -468,7 +470,7 @@ $query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
 
 -----
 
-## > DVWA: Weak SESSION IDs
+# > DVWA: Weak SESSION IDs
 
 ![image-20220521174253840](../img/image-20220521174253840.png)
 
@@ -535,16 +537,15 @@ DOM이 HTTP 통신과 관련 있다는 사실 정도만...
 
 ```javascript
 
-					if (document.location.href.indexOf("default=") >= 0) {
-						var lang = document.location.href.substring(document.location.href.indexOf("default=")+8);
-						document.write("<option value='" + lang + "'>" + decodeURI(lang) + "</option>");
-						document.write("<option value='' disabled='disabled'>----</option>");
-					}
-					    
-					document.write("<option value='English'>English</option>");
-					document.write("<option value='French'>French</option>");
-					document.write("<option value='Spanish'>Spanish</option>");
-					document.write("<option value='German'>German</option>");
+if (document.location.href.indexOf("default=") >= 0) {
+	var lang = document.location.href.substring(document.location.href.indexOf("default=")+8);
+	document.write("<option value='" + lang + "'>" + decodeURI(lang) + "</option>");
+	document.write("<option value='' disabled='disabled'>----</option>");
+}
+document.write("<option value='English'>English</option>");
+document.write("<option value='French'>French</option>");
+document.write("<option value='Spanish'>Spanish</option>");
+document.write("<option value='German'>German</option>");
 				
 ```
 

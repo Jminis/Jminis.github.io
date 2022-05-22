@@ -24,5 +24,37 @@ parent: P4C
 
 ------
 
+# 정리글
 
 
+
+## > 환경 구축 과정
+
+[https://jminis.github.io/docs/P4C/Day29/#-dvwa-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0](https://jminis.github.io/docs/P4C/Day29/#-dvwa-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0)
+
+<br>
+
+## > 문제별 라업
+
+1. [Brute Force](https://jminis.github.io/docs/P4C/Day29/#-dvwa-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0)
+2. [Command Injection](https://jminis.github.io/docs/P4C/Day32/#-dvwa-command-injection)
+3. [CSRF](https://jminis.github.io/docs/P4C/Day32/#-dvwa-cross-site-request-forgery-csrf)
+4. [File Inclusion](https://jminis.github.io/docs/P4C/Day32/#-dvwa-file-inclusion)
+5. [File Upload](https://jminis.github.io/docs/P4C/Day34/#-dvwa-file-upload)
+6. [Insecure CAPTCHA](https://jminis.github.io/docs/P4C/Day34/#-dvwa-insecure-recaptcha)
+7. [SQL Injecition](https://jminis.github.io/docs/P4C/Day34/#-dvwa-sql-injection)
+8. [SQL Injecition (blind)](https://jminis.github.io/docs/P4C/Day34/#-dvwa-sql-injection-blind)
+9. [Weak Session IDs](https://jminis.github.io/docs/P4C/Day34/#-dvwa-weak-session-ids)
+10. [XSS (DOM)](https://jminis.github.io/docs/P4C/Day34/#-dvwa-dom-based-xss)
+11. [XSS (Reflected)](https://jminis.github.io/docs/P4C/Day34/#-dvwa-reflected-xss)
+12. [XSS (Stored)]()
+13. [CSP Bypass]()
+14. [JavaScript]()
+
+<br>
+
+## > low 끝
+
+flag 인증 방식이 아닌 실제 구축된 환경에서 테스트 방식으로 학습이 익숙하지 않았지만, 오히려 더 다양하게 시도해볼 수 있어서 좋았던 것 같습니다. 생각 그대로를 글로 옮기려다보니 난잡한 라업이 되었지만 훗날 완성을 위한 부품들을 다 꺼내어 살펴보았다고 생각합니다. 다음 단계 문제도 열심히 풀겠습니다.
+
+**다음 주 일정은 mysqld 자격증 시험, bob 서류 접수**
