@@ -24,3 +24,6 @@ parent: P4C
 
 # 정리글
 
+[https://jminis.github.io/docs/P4C/Day43/](https://jminis.github.io/docs/P4C/Day43/)
+
+이전에 미리 풀어둔 기록 덕분에 bob 사전교육 준비를 진행했습니다!
