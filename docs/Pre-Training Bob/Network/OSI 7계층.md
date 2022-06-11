@@ -50,9 +50,9 @@ grand_parent: Pre-Training Bob
 - 물리적 링크를 통하여 정보전송
 - 흐름제어: 수신측에 맞춰서 송신측의 속도, 전송량을 제어 
 - 오류제어: 오류가 있을 시 재 전송욜 요청 => 신뢰성 
-- MAC 주소의 앞 6자리는 OUI((NIC카드의 회사 정보), 뒤 6자리는 HI(호스트 정보)로 구성
-- 스위치 장비, 이더넷 
-※ OUI : Organization Unique Identifier
+- MAC 주소의 앞 6자리는 OUI(NIC카드의 회사 정보), 뒤 6자리는 HI(호스트 정보)로 구성
+- 스위치 장비, 이더넷   
+※ OUI : Organization Unique Identifier  
 ※ HI : Host Identifier
 
 <br>
@@ -77,7 +77,7 @@ grand_parent: Pre-Training Bob
 - 종단간 신뢰성 있는 데이터 전송을 담당
 - 연결지향(TCP) 또는 비 연결지향(UDP) 
 - 흐름제어, 오류제어 수행
-- 혼잡제어: 트래픽이 많이 있을 시 송신측의 송신량을 조절
+- 혼잡제어: 트래픽이 많이 있을 시 송신측의 송신량을 조절  
 ※ Port(포트): 패킷이 응용프로그램을 찾아갈 통로 번호
 
 <br>
@@ -120,7 +120,7 @@ grand_parent: Pre-Training Bob
 - ICMP: 송신측의 상황과 목적지 노드의 상황을 진단(Ping)
 - ARP table: 사전에 어떤 IP가 어떤 MAC주소인지 기록되어 있음
   1. ARP Request(broadcasting)를 이용하여 정보수집
-  2. ARP Response,Reply를 확인하여 기록
+  2. ARP Response,Reply를 확인하여 기록  
   ※ ICMP: Internet Control Message Protocol
 
 <br>
@@ -178,8 +178,8 @@ grand_parent: Pre-Training Bob
 
 - BGP
   - Border Gateway Protocol
-  - AS와 AS 간 이루어지는 프로토콜
-  ※ AS: Autonomous System. 하나의 네트워크 관리자에 의해 관리되는 라우터 집단
+  - AS와 AS 간 이루어지는 프로토콜  
+  ※ AS: Autonomous System. 하나의 네트워크 관리자에 의해 관리되는 라우터 집단  
   ※ ISP: Internet Service Protocol. 인터넷에 접속하는 수단을 제공하는 주체
 
 <br>
