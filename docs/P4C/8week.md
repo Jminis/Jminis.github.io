@@ -44,7 +44,18 @@ parent: P4C
 15. [assassin](https://jminis.github.io/docs/P4C/Day53/#-lord-of-sql-injection-assassin)
 16. [succubus](https://jminis.github.io/docs/P4C/Day53/#-lord-of-sql-injection-succubus)
 
+![image-20220612183520817](img/image-20220612183520817.png)
+
+<br><br>
+
 
 ## > 그 이후
 
 이번 주에 bob 서류 합격과 인적성 시험, 필기 시험을 보면서 한창 더 해야겠다는 생각이 들었습니다. 군 전역 이후 bob 지원만 바라보고 달려왔던터라 지원 이후에 약간의 번아웃이 왔었는데 P4C 과제 덕분에라도 찔끔찔끔 공부를 하게 되었습니다. 다음 주 면접 준비를 하면서도 과제 잊지 않고 진행하며, 스스로 더 해나가도록 하겠습니다.
+
+16번까지인게 아쉬워서 20번까지 !!
+
+17.[zombie_assassin]()
+18.[nightmare]()
+19.[xavis]()
+20.[dragon]()
