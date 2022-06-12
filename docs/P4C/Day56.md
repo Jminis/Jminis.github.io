@@ -72,8 +72,9 @@ id=%00&pw=+--1 ro
 
 `strrev` 덕분에 좀 더 머리를 써야했다.
 
-
 <br><br><br>
+
+-----
 
 # > Lord of Sql injection: nightmare
 
@@ -140,8 +141,10 @@ pw=')=0;%00
 
 <br><br><br>
 
+-----
 
-# > Lord of Sql injection: nightmare
+
+# > Lord of Sql injection: xavis
 
 ## 삽질
 
@@ -251,3 +254,56 @@ sqld 자격증 공부 당시 익혀둔 개념으로 `SELECT`와 같은 구문의
 또한 신기하게도 서브 쿼리에서는 `FROM` 절을 사용하지 않아도 메인 쿼리의 테이블로부터 결과값을 가져올 수 있었다.{: .text-red-000}
 
 ![image-20220612183419171](../img/image-20220612183419171.png)
+
+<br><br><br>
+
+-----
+
+# > Lord of Sql injection: dragon
+
+## 삽질
+
+```php
+<?php 
+  include "./config.php"; 
+  login_chk(); 
+  $db = dbconnect(); 
+  if(preg_match('/prob|_|\.|\(\)/i', $_GET[pw])) exit("No Hack ~_~"); 
+  $query = "select id from prob_dragon where id='guest'# and pw='{$_GET[pw]}'";
+  echo "<hr>query : <strong>{$query}</strong><hr><br>"; 
+  $result = @mysqli_fetch_array(mysqli_query($db,$query)); 
+  if($result['id']) echo "<h2>Hello {$result[id]}</h2>"; 
+  if($result['id'] == 'admin') solve("dragon");
+  highlight_file(__FILE__); 
+?>
+```
+
+![image-20220612184621862](../img/image-20220612184621862.png)
+
+이왕 켠김에 드래곤은 잡아야하지 않겠냐는 생각에 열어보았는데 많이 많이 당황했다. 아니 사용자의 입력이 주석처리되면 어쩌자는거지?
+
+![image-20220612184335384](../img/image-20220612184335384.png)
+
+직접 DB 쿼리를 날릴 때에 줄바꿈이 이루어지면 어떻게 되려나 싶은 마음에
+
+```
+pw=%0a
+```
+를 날렸더니 위 사진과 같은 결과가 나왔다. 항상 `GUEST`가 나올 줄 알았는데 이러면 도전해볼만하지 않은가?!
+
+<br>
+
+## writeup
+
+`#`과 `--+`과 같은 주석처리는 결국 기호 뒤에 있는 줄의 문자들만 가능하다. 즉, 같은 줄에만 있는 문자들만 되는 것이다. 그리하여 다음 줄에 이어지는 쿼리문을 작성한다면 의도대로 id 파라미터 값을 'admin' 으로 만들 수 있겠다.
+
+```
+%0a and 0 or id='admin
+```
+
+앞선 `id='guest'` 부분을 `and 0`을 붙혀주면서 거짓으로 만들고 뒤에 `or id='admin'`을 완성시켜 풀었다.
+
+![image-20220612185010767](../img/image-20220612185010767.png)
+
+앞선 문제보다 훨씬 쉽게 느껴졌고 아마도 이전 DB 구축 시 직접 명령어를 쳐본 경험이 도움이 됬다.
+

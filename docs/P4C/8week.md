@@ -55,7 +55,7 @@ parent: P4C
 
 16번까지인게 아쉬워서 20번까지 !!
 
-17.[zombie_assassin]()
-18.[nightmare]()
-19.[xavis]()
-20.[dragon]()
+17.[zombie_assassin](https://jminis.github.io/docs/P4C/Day56/#-lord-of-sql-injection-zombie_assassin)
+18.[nightmare](https://jminis.github.io/docs/P4C/Day56/#-lord-of-sql-injection-nightmare)  
+19.[xavis](https://jminis.github.io/docs/P4C/Day56/#-lord-of-sql-injection-xavis)  
+20.[dragon](https://jminis.github.io/docs/P4C/Day56/#-lord-of-sql-injection-dragon)  
