@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Day63
+title: Day62
 nav_order: 3
 
 parent: Hacking Project - W9
@@ -110,7 +110,7 @@ function kk(x,y){
 
 -----
 
-# > Webhacking.kr:old-16(js)
+# > Webhacking.kr:old-17(js)
 
 ## writeup
 
