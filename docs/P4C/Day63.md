@@ -360,7 +360,7 @@ function H(I) {
 
 ![image-20220619125353469](../img/image-20220619125353469.png)
 
-"flag" 명령어에서 admin만 가능하다고 한다. 아니 내가 지금 root가 짱아니여!?
+"flag" 명령어에서 admin만 가능하다고 한다. 아니 내가 지금 root인데 root가 짱아니여!?
 
 
 
@@ -777,3 +777,111 @@ if __name__ == "__main__":
 
 
 ![image-20220619160422084](../img/image-20220619160422084.png)
+
+
+<br><br><br>
+
+-----
+
+# > Webhacking.kr:old-05
+
+## 삽질
+
+처음 문제 페이지에 접속하면 로그인과 조인이 존재한다.
+
+![image-20220619210326693](../img/image-20220619210326693.png)
+
+로그인 버튼을 누르면 `/mem/login.php`로 이동되었지만, 조인은 그렇지 않았다. 나름대로 게싱하여 `/mem/join.php`로 이동하니 페이지가 로드되었고 그 안에서 스크립트문을 확인할 수 있었다. 정리하면 아래와 같다.
+
+```javascript
+l = 'a';
+ll = 'b';
+lll = 'c';
+llll = 'd';
+lllll = 'e';
+llllll = 'f';
+lllllll = 'g';
+llllllll = 'h';
+lllllllll = 'i';
+llllllllll = 'j';
+lllllllllll = 'k';
+llllllllllll = 'l';
+lllllllllllll = 'm';
+llllllllllllll = 'n';
+lllllllllllllll = 'o';
+llllllllllllllll = 'p';
+lllllllllllllllll = 'q';
+llllllllllllllllll = 'r';
+lllllllllllllllllll = 's';
+llllllllllllllllllll = 't';
+lllllllllllllllllllll = 'u';
+llllllllllllllllllllll = 'v';
+lllllllllllllllllllllll = 'w';
+llllllllllllllllllllllll = 'x';
+lllllllllllllllllllllllll = 'y';
+llllllllllllllllllllllllll = 'z';
+I = '1';
+II = '2';
+III = '3';
+IIII = '4';
+IIIII = '5';
+IIIIII = '6';
+IIIIIII = '7';
+IIIIIIII = '8';
+IIIIIIIII = '9';
+IIIIIIIIII = '0';
+li = '.';
+ii = '<';
+iii = '>';
+lIllIllIllIllIllIllIllIllIllIl = lllllllllllllll + llllllllllll + llll + llllllllllllllllllllllllll + lllllllllllllll + lllllllllllll + ll + lllllllll + lllll;
+lIIIIIIIIIIIIIIIIIIl = llll + lllllllllllllll + lll + lllllllllllllllllllll + lllllllllllll + lllll + llllllllllllll + llllllllllllllllllll + li + lll + lllllllllllllll + lllllllllllllll + lllllllllll + lllllllll + lllll;
+if (eval(lIIIIIIIIIIIIIIIIIIl).indexOf(lIllIllIllIllIllIllIllIllIllIl) == -1) {
+	alert('bye');
+	throw "stop";
+}
+if (eval(llll + lllllllllllllll + lll + lllllllllllllllllllll + lllllllllllll + lllll + llllllllllllll + llllllllllllllllllll + li + 'U' + 'R' + 'L').indexOf(lllllllllllll + lllllllllllllll + llll + lllll + '=' + I) == -1) {
+	alert('access_denied');
+	throw "stop";
+} else {
+	document.write('<font size=2 color=white>Join</font><p>');
+	document.write('.<p>.<p>.<p>.<p>.<p>');
+	document.write('<form method=post action=' + llllllllll + lllllllllllllll + lllllllll + llllllllllllll + li + llllllllllllllll + llllllll + llllllllllllllll + '>');
+	document.write('<table border=1><tr><td><font color=gray>id</font></td><td><input type=text name=' + lllllllll + llll + ' maxlength=20></td></tr>');
+	document.write('<tr><td><font color=gray>pass</font></td><td><input type=text name=' + llllllllllllllll + lllllllllllllllllllllll + '></td></tr>');
+	document.write('<tr align=center><td colspan=2><input type=submit></td></tr></form></table>');
+}
+```
+
+조인 페이지에 들어갔을 때 "bye" 팝업창이 떴었는데 아무래도 분석하여서 가입할 수 있도록 해야겠다.
+
+```javascript
+console.log(lIIIIIIIIIIIIIIIIIIl);
+console.log(lIllIllIllIllIllIllIllIllIllIl);
+```
+
+"bye"가 뜨는 이유를 알기 위해 위 두 값을 얻엇는데 각각 `oldzombie`와 `document.cookie` 였다. 즉, `oldzombie`라는 이름의 쿠키값이 없으면 "bye"가 출력됬던 것이다. 그리하여 해당 쿠키값을 생성하고 새로고침 하였더니 "access_denied" 팝업이 발생했다. 
+
+이후 "access_denied"를 띄우지 않기 위해서 어떤 조건이 필요한지 문자를 치환해보니 `document.URL.indexOf(mode=1)` 였다. 그리하여 url 인자로 `?mode=1`을 삽입하였고 가입을 위해 정보를 입력하는 창이 떴다.
+
+![image-20220619215154194](../img/image-20220619215154194.png)
+
+이제 시작인거 같은데 이전처럼 php 코드를 볼 수가 없으니 좀 막막하다. 단순한 sql injection으로는 풀리는 문제는 아닌 듯한데... 이 문제에서 생각해볼 수 있는 모든 경우의 수를 생각해보자.
+
+1. join.php에서 가입할 때 날리는 쿼리문으로 admin의 비밀번호를 바꾸는 쿼리를 날려볼까?
+2. admin이라는 계정의 세션값을 유추해낼 수 있는가?
+
+<br>
+
+## writeup
+
+join.php에서 아이디를 만들 수 있는데까지는 어렵지 않다. 이후 "admin" 계정으로 로그인해야 하는데, 로그인 창에서나 가입 창에서나 따로 sql injection이 가능한지 유추할 수가 없었다.
+
+다양하게 삽질을 하다가 혹시나 공백 입력을 어떻게 처리하는지 궁금하여 시도해보았는데 계정이 만들어졌다.
+
+![image-20220619223532979](../img/image-20220619223532979.png)
+
+" admin"을 삽입하였는데 계정이 만들어졌고 해당 계정으로 로그인하였더니 풀렸다.
+
+![image-20220619223511290](../img/image-20220619223511290.png)
+
+이야;;

@@ -28,44 +28,45 @@ parent: P4C
 
 # 정리글
 
-'22. 06. 19 
+**'22.06.19 25,58,22,5,7,26,27,50,51 미완성**
+{: .text-red-000}  
 
 ## PHP
-[old-01](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-01php)
-[old-23](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-023php)
-[old-24](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-024php)
-[old-25](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-025php) 미완
-[old-26](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-026php)
+[old-01](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-01php)  
+[old-23](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-023php)  
+[old-24](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-024php)  
+[old-25](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-025php) 미완  
+[old-26](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-026php)  
 [old-33](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-033php)
 
 
 ## JS
-[old-14](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-14js)
-[old-15](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-15js)
-[old-16](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-16js)
-[old-17](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-17js)
-[old-34](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-34js) 미완
+[old-14](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-14js)  
+[old-15](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-15js)  
+[old-16](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-16js)  
+[old-17](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-17js)  
+[old-34](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-34js) 미완  
 [old-58](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-58js)
 
 
 ## LAPTOP
-[old-04](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-4laptop)
-[old-06](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-6laptop)
-[old-10](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-10laptop)
-[old-11](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-11laptop)
-[old-12](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-12laptop)
-[old-19](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-19laptop)
-[old-20](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-20laptop)
-[old-22](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-22laptop) 미완
-[old-32](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-32laptop)
+[old-04](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-4laptop)  
+[old-06](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-6laptop)  
+[old-10](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-10laptop)  
+[old-11](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-11laptop)  
+[old-12](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-12laptop)  
+[old-19](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-19laptop)  
+[old-20](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-20laptop)  
+[old-22](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-22laptop) 미완  
+[old-32](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-32laptop)  
 [old-54](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-54laptop)
 
 ## 추가
-[old-5]()
-[old-7]()
-[old-26]()
-[old-27]()
-[old-50]()
+[old-5](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-5)  
+[old-7]() 미완   
+[old-26]() 미완   
+[old-27]() 미완   
+[old-50]() 미완   
 [old-51]()
 
 <br>
@@ -73,3 +74,7 @@ parent: P4C
 <br>
 
 -----
+
+# 해명글
+
+이번 주에 bob 면접을 준비하느라 시간 안배를 잘못했습니다. 모레전까지 이번 주차 과제를 완료하고 다음 주차 과제에는 밀리지 않도록 주의하겠습니다. 죄송합니다.
