@@ -704,7 +704,7 @@ lv5frm.submit();
 
 -----
 
-# > Webhacking.kr:old-20(laptop)
+# > Webhacking.kr:old-22(laptop)
 
 ## writeup
 
@@ -714,7 +714,7 @@ lv5frm.submit();
 
 -----
 
-# > Webhacking.kr:old-22(laptop)
+# > Webhacking.kr:old-32(laptop)
 
 ## writeup
 
