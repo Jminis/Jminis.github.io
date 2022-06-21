@@ -211,3 +211,56 @@ file의 파라미터값을 `./index`와 `index`로 넘겼을 때 결과가 다�
 <br>
 
 오케이 면접준비
+
+<br><br>
+
+## writeup
+
+**'22.06.20**
+{: .text-red-000}
+
+샤워하면서도 생각을 해봤는데 도저히 우회할 방법이 생각나지 않았다. 그래서 문제를 풀기 위한 키워드를 찾아보았는데 대충 "LIF" 취약점이라는 문구가 보였다. 그래서 찾아보았다.
+
+LIF는 Local File Inclusion의 약자로 웹사이트에서 include, require, require_once, file_get_contents, fopen 등의 함수를 사용할 때 발생한다. 단, 파일 참조 시에 접근하는 디렉토리 정보를 사용자로부터 입력받을 경우에 발생된다. 그리고 `php wrapper`와 결합하여 서버에 존재하는 파일들을 읽어올 수 있다.
+
+PHP wrapper에서 wrapper는 코드나 데이터를 감싸는 의미로 php의 wrapper는 `php://`와 같이 사용한다.  
+
+1. expect://\<system command\>  
+   system command를 실행한다.
+2. php://filter/  
+   다양한 In/Out stream을 다룬다. convert.base64-encode와 resource랑 결합
+3. zip://  
+   파일의 압축을 풀고 `#<파일명>`을 뒤에 붙혀 파일 안의 특정 파일을 실행할 수 있다.
+4. php://stdin  
+   stdin,stdout,stderr로 연결한다.
+5. php://fd/\<fd number\>  
+   파일 디스크립터에 연결한다.
+6. php://input  
+   post 데이터를 입력받는다. 
+
+이 중에서 `php://filter`의 사용법을 알아보면.
+
+```php
+php://filter/convert.base64-encode/resource=/flag
+```
+
+flag라는 파일의 정보를 base64로 인코딩된 정보로 받아볼 수 있다.
+
+![image-20220620204656584](../img/image-20220620204656584.png)
+
+flag의 내용이 정말로 인코딩 된 값으로 나오고 이것을 복호화하면
+
+```php
+<?php
+  echo "FLAG is in the code";
+  $flag = "FLAG{this_is_your_first_flag}";
+?>
+```
+
+이렇게 플래그를 획득할 수 있다.
+
+아니 '22.06.20 20:48분 웹해킹.kr 서버가 터졌다;;;
+
+![image-20220620204834010](../img/image-20220620204834010.png)
+
+얼른 flag인증하고 밀렸던 과제들 해야하는데 ㅠㅠㅠㅠㅠ

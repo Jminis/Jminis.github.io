@@ -28,10 +28,13 @@ parent: P4C
 
 # 정리글
 
-**'22.06.19 25,58,22,5,7,26,27,50,51 미완성**
+**'22.06.19 25,34,22,5,7,26,50,51 미완성**
+{: .text-red-000}  
+**'22.06.20 25,34,22,50 미완성**
 {: .text-red-000}  
 
 ## PHP
+
 [old-01](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-01php)  
 [old-23](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-023php)  
 [old-24](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-024php)  
@@ -63,11 +66,11 @@ parent: P4C
 
 ## 추가
 [old-5](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-5)  
-[old-7]() 미완   
-[old-26]() 미완   
-[old-27]() 미완   
-[old-50]() 미완   
-[old-51]() 미완
+[old-7](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-7)  
+[old-26](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-026php)   
+[old-27](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-27)  
+[old-50](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-50) 미완   
+[old-51](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-51) 
 
 <br>
 <br>
