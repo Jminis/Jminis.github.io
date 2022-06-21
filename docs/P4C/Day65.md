@@ -490,31 +490,26 @@ CSRF라는 이름으로 힌트가 있는 상태이기에 "admin"의 권한으로
 
 이 문제를 풀기 위해서는 접속 IP 정보가 `127.0.0.1`이어야 하고, userid 정보가 "admin"이여야만 `memo_text`라는 글로벌 변수에 플래그가 적히게 된다.
 
-<br>
 
 ### memo()
 
 사용자의 입력 또는 `admin_notice_flag`에서 적힌 값들이 여기 적히게 된다.
 
-<br>
 
 ### vuln()
 
 xss_filter 리스트를 만들어두고 입력받는 값들을 전부 소문자로 만든 뒤 필터링을 거친다. `script`나 `onerror` 외에 다른 방법을 찾아야할 것 같다.
 
-<br>
 
 ### flag()
 
 POST 메소드로 입력받은 값을 `check_csrf`라는 함수로 넒긴 뒤 이 결과에 따라 "wrong??" 또는 "good"을 출력한다.
 
-<br>
 
 ### check_csrf()
 
 여기서는 `http://127.0.0.1:8000/vuln?param=` 에다가 `flag()`로부터 넘겨받은 인자를 더한 후에 `read_url` 함수로 토스.
 
-<br>
 
 ### read_url()
 
@@ -528,7 +523,7 @@ POST 메소드로 입력받은 값을 `check_csrf`라는 함수로 넒긴 뒤 �
 <img src="target">
 ```
 
-알고있는 방법 중에 가장 마지막에 필터링이 되지 않았고, `<img src="/admin/notice_flag">` 를 전달해보았다.
+알고있는 방법 중에 가장 마지막 문장이 필터링에 안걸리니까 `<img src="/admin/notice_flag">` 를 전달해보았다.
 
 ![image-20220621161346728](../img/image-20220621161346728.png)
 
@@ -842,3 +837,212 @@ if __name__ == '__main__':
 ![image-20220621165255723](../img/image-20220621165255723.png)
 
 사실 `cat flag.txt`로 두 번 전송했다가 왜 안나오지 하고 세번째에 플래그를 얻었다 ㅋㅋㅋㅋㅋ
+
+<br><br><br>
+
+-----
+
+# > dreamhack.kr: Carve Party
+
+## writeup
+
+![image-20220621192238173](../img/image-20220621192238173.png)
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script>
+var pumpkin = [ 124, 112, 59, 73, 167, 100, 105, 75, 59, 23, 16, 181, 165, 104, 43, 49, 118, 71, 112, 169, 43, 53 ];
+var counter = 0;
+var pie = 1;
+
+function make() {
+  if (0 < counter && counter <= 1000) {
+    $('#jack-nose').css('opacity', (counter) + '%');
+  }
+  else if (1000 < counter && counter <= 3000) {
+    $('#jack-left').css('opacity', (counter - 1000) / 2 + '%');
+  }
+  else if (3000 < counter && counter <= 5000) {
+    $('#jack-right').css('opacity', (counter - 3000) / 2 + '%');
+  }
+  else if (5000 < counter && counter <= 10000) {
+    $('#jack-mouth').css('opacity', (counter - 5000) / 5 + '%');
+  }
+
+  if (10000 < counter) {
+    $('#jack-target').addClass('tada');
+    var ctx = document.querySelector("canvas").getContext("2d"),
+    dashLen = 220, dashOffset = dashLen, speed = 20,
+    txt = pumpkin.map(x=>String.fromCharCode(x)).join(''), x = 30, i = 0;
+
+    ctx.font = "50px Comic Sans MS, cursive, TSCu_Comic, sans-serif"; 
+    ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
+    ctx.strokeStyle = ctx.fillStyle = "#1f2f90";
+
+    (function loop() {
+      ctx.clearRect(x, 0, 60, 150);
+      ctx.setLineDash([dashLen - dashOffset, dashOffset - speed]); // create a long dash mask
+      dashOffset -= speed;                                         // reduce dash length
+      ctx.strokeText(txt[i], x, 90);                               // stroke letter
+
+      if (dashOffset > 0) requestAnimationFrame(loop);             // animate
+      else {
+        ctx.fillText(txt[i], x, 90);                               // fill final letter
+        dashOffset = dashLen;                                      // prep next char
+        x += ctx.measureText(txt[i++]).width + ctx.lineWidth * Math.random();
+        ctx.setTransform(1, 0, 0, 1, 0, 3 * Math.random());        // random y-delta
+        ctx.rotate(Math.random() * 0.005);                         // random rotation
+        if (i < txt.length) requestAnimationFrame(loop);
+      }
+    })();
+  }
+  else {
+    $('#clicks').text(10000 - counter);
+  }
+}
+
+$(function() {
+  $('#jack-target').click(function () {
+    counter += 1;
+    if (counter <= 10000 && counter % 100 == 0) {
+      for (var i = 0; i < pumpkin.length; i++) {
+        pumpkin[i] ^= pie;
+        pie = ((pie ^ 0xff) + (i * 10)) & 0xff;
+      }
+    }
+    make();
+  });
+});
+</script>
+</body>
+</html>
+```
+
+만번을 클릭하면 플래그를 획득하기는 하는데 단순히 어느 수치를 바꾼다고해서 쉽게 조작할 수 있을 거 같지는 않다. 매 클릭마다 카운터가 올라가며 어떠한 연산이 계속 수행되기 때문이다. 자동으로 클릭하게끔 만들거나 코드를 조금 수정하면 될 것 같긴하다.
+
+```javascript
+$('#jack-target').click(function () {
+    counter += 1;
+    if (counter <= 10000 && counter % 100 == 0) {
+      for (var i = 0; i < pumpkin.length; i++) {
+        pumpkin[i] ^= pie;
+        pie = ((pie ^ 0xff) + (i * 10)) & 0xff;
+      }
+    }
+```
+
+이 부분에서 if 문에 들어가는 조건이 클릭 횟수의 100의 배수여야만 들어가는 것을 보고,결국 100의 배수가 되는 클릭에만 특정 로직이 돌아가는 것으로 이해했다. 그래서 `counter += 1;` 부분을 `counter += 100;` 으로 바꿔주고 100번만 클릭했다.
+
+![image-20220621193122847](../img/image-20220621193122847.png)
+
+1만번 클릭하는 것보다는 훨씬 나으니까 :)
+
+<br><br><br>
+
+-----
+
+# > dreamhack.kr: xss-2
+
+## writeup
+
+```python
+#!/usr/bin/python3
+from flask import Flask, request, render_template
+from selenium import webdriver
+import urllib
+import os
+
+app = Flask(__name__)
+app.secret_key = os.urandom(32)
+
+try:
+    FLAG = open("./flag.txt", "r").read()
+except:
+    FLAG = "[**FLAG**]"
+
+
+def read_url(url, cookie={"name": "name", "value": "value"}):
+    cookie.update({"domain": "127.0.0.1"})
+    try:
+        options = webdriver.ChromeOptions()
+        for _ in [
+            "headless",
+            "window-size=1920x1080",
+            "disable-gpu",
+            "no-sandbox",
+            "disable-dev-shm-usage",
+        ]:
+            options.add_argument(_)
+        driver = webdriver.Chrome("/chromedriver", options=options)
+        driver.implicitly_wait(3)
+        driver.set_page_load_timeout(3)
+        driver.get("http://127.0.0.1:8000/")
+        driver.add_cookie(cookie)
+        driver.get(url)
+    except Exception as e:
+        driver.quit()
+        # return str(e)
+        return False
+    driver.quit()
+    return True
+
+
+def check_xss(param, cookie={"name": "name", "value": "value"}):
+    url = f"http://127.0.0.1:8000/vuln?param={urllib.parse.quote(param)}"
+    return read_url(url, cookie)
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/vuln")
+def vuln():
+    return render_template("vuln.html")
+
+
+@app.route("/flag", methods=["GET", "POST"])
+def flag():
+    if request.method == "GET":
+        return render_template("flag.html")
+    elif request.method == "POST":
+        param = request.form.get("param")
+        if not check_xss(param, {"name": "flag", "value": FLAG.strip()}):
+            return '<script>alert("wrong??");history.go(-1);</script>'
+
+        return '<script>alert("good");history.go(-1);</script>'
+
+
+memo_text = ""
+
+
+@app.route("/memo")
+def memo():
+    global memo_text
+    text = request.args.get("memo", "")
+    memo_text += text + "\n"
+    return render_template("memo.html", memo=memo_text)
+
+
+app.run(host="0.0.0.0", port=8000)
+```
+
+CSRF 문제와 형식이 유사한 듯한데, 이번엔 FLAG 값이 `value` 키의 값으로 전달되어진다. 물론 우리가 확인할 수 있는 것은 아니고, `read_url()` 함수 실행 시 인자로 전달되어지기 때문에 적당~한 스크립트로 쿠키 정보를 가져와야 할듯하다. 근데 재밌는 점은 vuln 페이지에서 스크립트 문이 안먹는다.
+
+![image-20220621195447674](../img/image-20220621195447674.png)
+
+분명 `param`으로 전달하여 html에는 적혔으나 실행이 안된다. 그래서 `img` 태그를 사용해보니 잘된다. 그리고 또 생각해야할 점은 어딘가에 쿠키값을 적어둬야 확인이 가능하다. 아마도 `memo()`를 이용해보면 되지 않을까?
+
+```html
+<img src="X" onerror="location.href('/memo?memo='+document.cookie);"> <!--함수 사용법 이슈-->
+<img src="X" onerror="location.href='/memo?memo='+document.cookie">
+```
+
+`location.href`를 php의 `history.go()`처럼 생각해서 잠깐 헤맸는데 뭔가 이상하다 싶어서 구글링하여 찾아냈다. 생각보다 여태 풀어온 문제들 덕분인지 시도가 막혀도 막막한 느낌만 드는건 아니다. 다른 방도가 있겠지라는 생각으로 이어지는게 참 좋은 습관인 것 같다.
+
+![image-20220621202738100](img/image-20220621202738100.png)
+
+
+
+근데 문제를 풀고나서야 웹사이트 이름은 XSS-1인데 문제 이름은 XSS-2 인것을 알았다.
