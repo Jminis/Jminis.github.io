@@ -187,8 +187,6 @@ php...php...php...?
 </div>
 </details>
 
-</div>
-</details>
 
 <details>
 <summary>6주차</summary>
