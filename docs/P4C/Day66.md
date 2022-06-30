@@ -13,7 +13,7 @@ grand_parent: P4C
 
 webhacking.kr 서버가 다운되어 드림핵 워게임을 풀다가 복구되는대로 풀겠읍니다!
 
-# > dreamhack.kr: devtools-source
+# > dreamhack.io: devtools-source
 
 ![image-20220622105557955](../img/image-20220622105557955.png)
 
@@ -29,7 +29,7 @@ webhacking.kr 서버가 다운되어 드림핵 워게임을 풀다가 복구되�
 
 -----
 
-# > dreamhack.kr: proxy-1
+# > dreamhack.io: proxy-1
 
 ![image-20220622110209535](img/image-20220622110209535.png)
 
@@ -221,7 +221,7 @@ userid=admin
 
 -----
 
-# > dreamhack.kr: php-1
+# > dreamhack.io: php-1
 
 ![image-20220622141519566](../img/image-20220622141519566.png)
 
@@ -276,7 +276,7 @@ can you see $flag?
 
 -----
 
-# > dreamhack.kr: csrf-2
+# > dreamhack.io: csrf-2
 
 
 ## writeup
@@ -395,7 +395,7 @@ app.run(host="0.0.0.0", port=8000)
 
 -----
 
-# > dreamhack.kr: simple-ssti
+# > dreamhack.io: simple-ssti
 
 ## writeup
 
@@ -459,7 +459,7 @@ SSTI는 Server-Side Templete Injection의 약자로 템플릿 엔진을 이용�
 
 ---
 
-# > dreamhack.kr: mango
+# > dreamhack.io: mango
 
 ##writeup
 

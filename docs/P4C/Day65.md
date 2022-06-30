@@ -13,7 +13,7 @@ grand_parent: P4C
 
 webhacking.kr 서버가 다운되어 드림핵 워게임을 풀다가 복구되는대로 풀겠읍니다!
 
-# > dreamhack.kr: cookie
+# > dreamhack.io: cookie
 
 ## writeup
 
@@ -84,7 +84,7 @@ POST 방식으로 입력을 받을 경우에 아이디와 비밀번호가 일치
 
 -----
 
-# > dreamhack.kr: file-download-1
+# > dreamhack.io: file-download-1
 
 ## writeup
 
@@ -187,7 +187,7 @@ GET 메소드를 통해 선택된 파일의 내용을 읽어다가 사용자에�
 
 -----
 
-# > dreamhack.kr: simple_sqli
+# > dreamhack.io: simple_sqli
 
 ## writeup
 
@@ -271,7 +271,7 @@ app.run(host='0.0.0.0', port=8000)
 
 -----
 
-# > dreamhack.kr: pathtraversal 
+# > dreamhack.io: pathtraversal 
 
 ## writeup
 
@@ -380,7 +380,7 @@ application = app # app.run(host='0.0.0.0', port=8000)
 
 -----
 
-# > dreamhack.kr: csrf-1
+# > dreamhack.io: csrf-1
 
 ## writeup
 
@@ -545,7 +545,7 @@ POST 메소드로 입력받은 값을 `check_csrf`라는 함수로 넒긴 뒤 �
 
 -----
 
-# > dreamhack.kr: command-injection-1
+# > dreamhack.io: command-injection-1
 
 ## writeup
 
@@ -606,7 +606,7 @@ command injection... 코드 중간에 `f'ping -c 3"{host}"`를 읽고 바로 공
 
 -----
 
-# > dreamhack.kr: session-basic
+# > dreamhack.io: session-basic
 
 ## writeup
 
@@ -703,7 +703,7 @@ if __name__ == '__main__':
 
 그리곤 출력되었다. 음 이러면 푼거 아닌가?
 
-![image-20220621163553797](img/image-20220621163553797.png)
+![image-20220621163553797](../img/image-20220621163553797.png)
 
 단순히 쿠키값에 `/admin`에서 얻은 세션값을 넣었을 뿐인데 풀렸다. 힐-링
 
@@ -711,7 +711,7 @@ if __name__ == '__main__':
 
 -----
 
-# > dreamhack.kr: image-storage
+# > dreamhack.io: image-storage
 
 ## writeup
 
@@ -842,7 +842,7 @@ if __name__ == '__main__':
 
 -----
 
-# > dreamhack.kr: Carve Party
+# > dreamhack.io: Carve Party
 
 ## writeup
 
@@ -941,7 +941,7 @@ $('#jack-target').click(function () {
 
 -----
 
-# > dreamhack.kr: xss-2
+# > dreamhack.io: xss-2
 
 ## writeup
 
@@ -1041,7 +1041,7 @@ CSRF 문제와 형식이 유사한 듯한데, 이번엔 FLAG 값이 `value` 키�
 
 `location.href`를 php의 `history.go()`처럼 생각해서 잠깐 헤맸는데 뭔가 이상하다 싶어서 구글링하여 찾아냈다. 생각보다 여태 풀어온 문제들 덕분인지 시도가 막혀도 막막한 느낌만 드는건 아니다. 다른 방도가 있겠지라는 생각으로 이어지는게 참 좋은 습관인 것 같다.
 
-![image-20220621202738100](img/image-20220621202738100.png)
+![image-20220621202738100](../img/image-20220621202738100.png)
 
 
 
