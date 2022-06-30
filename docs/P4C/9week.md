@@ -34,13 +34,17 @@ parent: P4C
 {: .text-red-000}  
 **'22.06.21 webhackin.kr 서버다운 25,34,22,50 미완성**
 {: .text-red-000}  
+**'22.06.27 webhackin.kr 서버복구 50 미완성**
+{: .text-red-000}   
+**'22.06.29 완성**
+{: .text-green-000}  
 
 ## PHP
 
 [old-01](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-01php)  
 [old-23](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-023php)  
 [old-24](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-024php)  
-[old-25](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-025php) 미완  
+[old-25](https://jminis.github.io/docs/P4C/Day57/#-webhackingkrold-025php)   
 [old-26](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-026php)  
 [old-33](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-033php)
 
@@ -50,7 +54,7 @@ parent: P4C
 [old-15](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-15js)  
 [old-16](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-16js)  
 [old-17](https://jminis.github.io/docs/P4C/Day62/#-webhackingkrold-17js)  
-[old-34](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-34js) 미완  
+[old-34](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-34js)   
 [old-58](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-58js)
 
 
@@ -62,7 +66,7 @@ parent: P4C
 [old-12](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-12laptop)  
 [old-19](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-19laptop)  
 [old-20](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-20laptop)  
-[old-22](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-22laptop) 미완  
+[old-22](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-22laptop)   
 [old-32](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-32laptop)  
 [old-54](https://jminis.github.io/docs/P4C/Day63/#-webhackingkrold-54laptop)
 
@@ -71,7 +75,7 @@ parent: P4C
 [old-7](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-7)  
 [old-26](https://jminis.github.io/docs/P4C/Day59/#-webhackingkrold-026php)   
 [old-27](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-27)  
-[old-50](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-50) 미완   
+[old-50](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-50)   
 [old-51](https://jminis.github.io/docs/P4C/Day64/#-webhackingkrold-51) 
 
 <br>

